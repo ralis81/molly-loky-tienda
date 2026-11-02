@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Prueba de paleta | The Loki & Molly World's</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#fff4e4;font-family:Inter,Segoe UI,Arial,sans-serif;color:#075653}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:12px 20px;background:#075653;color:white;box-shadow:0 4px 15px #0002}.title{font-weight:800}.sub{font-size:12px;opacity:.85;margin-top:3px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}button{border:1px solid #ffffff66;background:#ffffff14;color:white;padding:9px 13px;border-radius:10px;font-weight:750;cursor:pointer}button.active{background:#fff4e4;color:#075653}.swatches{display:flex;gap:4px}.swatches span{width:20px;height:20px;border-radius:50%;border:1px solid #ffffff55}iframe{display:block;width:100%;height:calc(100dvh - 76px);border:0;background:white} @media(max-width:600px){iframe{height:calc(100dvh - 125px)}}
+</style></head><body><div class="toolbar"><div><div class="title">🐾 Loki & Molly · Prueba visual de colores</div><div class="sub">Comparador temporal · la página principal no se modifica</div></div><div class="actions"><div class="swatches"><span style="background:#075653"></span><span style="background:#fff4e4"></span><span style="background:#c76540"></span><span style="background:#91a66c"></span><span style="background:#dca329"></span></div><button id="original" onclick="setTheme(false)">Original</button><button id="new" class="active" onclick="setTheme(true)">Nueva paleta</button></div></div><iframe id="site" src="./index.html" title="Vista previa de la tienda Loki & Molly"></iframe>
+<script>
+const css=`
+:root{--brand:#075653!important;--brand2:#0b7770!important;--accent:#dca329!important;--dark:#075653!important;--bg:#fff4e4!important;--surface:#fffdf7!important;--muted:#65412e!important;--line:#e8d6bd!important;--shadow:0 18px 48px rgba(7,86,83,.13)!important}
+body{color:#65412e!important;background:radial-gradient(circle at 8% 8%,rgba(145,166,108,.12),transparent 18%),radial-gradient(circle at 92% 14%,rgba(220,163,41,.13),transparent 17%),#fff4e4!important}
+.topbar{background:#075653!important}.topbar strong{color:#ffe2a4!important}
+header{background:rgba(255,244,228,.97)!important}
+.brand span{color:#075653!important}.brand-text small{color:#65412e!important}
+.search{background:#fffdf7!important;border:1px solid #e8d6bd}
+.btn-primary{background:#075653!important;color:white!important;box-shadow:0 8px 20px rgba(7,86,83,.2)!important}
+.btn-primary:hover{background:#0b7770!important}
+.btn-outline{background:#fffdf7!important;border-color:#d9c5a7!important;color:#075653!important}
+.hero-card{background:linear-gradient(115deg,rgba(7,86,83,.96),rgba(7,86,83,.79)),url('https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1600&q=85') center/cover!important}
+.hero-brand .meta-kicker{color:#f2c66c!important}
+.benefit,.product,.info-card,.panel{background:#fffdf7!important}
+.brand-story{background:linear-gradient(135deg,#fffdf7,#edf1df)!important}
+.brand-story-media{background:#e6eddf!important}
+.brand-pill{background:#e8eedb!important;color:#075653!important}
+.brand-points div{background:#fff4e4!important;border-color:#e7d5b8!important;color:#65412e!important}
+.chip.active{background:#075653!important}
+.product-img{background:linear-gradient(145deg,#e7edde,#fff4e4)!important}
+.label{background:#f5e3ad!important;color:#65412e!important}
+.price{color:#075653!important}.stock{color:#497a4e!important}
+.promo{background:linear-gradient(135deg,#f6dfce,#fff1cc)!important;border-color:#e6c5a7!important}
+.promo p{color:#65412e!important}
+.zone{background:#f3e9d9!important}.step b{background:#efd7bf!important;color:#a95032!important}
+.tips-section{background:linear-gradient(135deg,#e8eedb,#fff4e4)!important;border-color:#cdd8b6!important}
+.smart-buy{background:linear-gradient(135deg,#e8eedb,#fff4e4)!important;border-color:#cdd8b6!important}
+footer{background:#075653!important;color:#fff4e4!important}
+footer .footer-inner p,footer .footer-inner li{color:#d5e3db!important}
+footer .copyright{color:#d5e3db!important;border-color:#397572!important}
+.whatsapp{background:#188b63!important}.cart-fab{background:#075653!important}.badge{background:#dca329!important;color:#3c3020!important}
+`;
+let palette=true;function apply(){const frame=document.getElementById('site');try{const doc=frame.contentDocument;if(!doc)return;let style=doc.getElementById('loki-palette-preview');if(!style){style=doc.createElement('style');style.id='loki-palette-preview';doc.head.appendChild(style)}style.textContent=palette?css:'';}catch(e){console.warn('No se pudo aplicar la paleta',e)}}
+function setTheme(next){palette=next;document.getElementById('new').classList.toggle('active',palette);document.getElementById('original').classList.toggle('active',!palette);apply()}
+document.getElementById('site').addEventListener('load',apply);
+</script></body></html>
